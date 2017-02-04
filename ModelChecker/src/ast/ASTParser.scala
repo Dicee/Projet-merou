@@ -71,7 +71,7 @@ class ASTParser {
         val lineRangeReg = new Regex("line:(\\d+)(:(\\d+))?[,>]|col:(\\d+)[,>]", "line0", "", "line1", "col")
     }
     
-    private var currentLine = 1
+    private var currentLine = _
     
     /**
      * Parses the AST file and generate a ASTNode tree.
@@ -100,7 +100,6 @@ class ASTParser {
                             case x if x.endsWith("Operator") => cnode
                             case x if x.contains("Literal" ) => cnode
                             case "VarDecl" | "FunctionDecl" | "ParmVarDecl" | "ExprWithCleanups" => cnode
-                            case "ExprWithCleanups"          => cnode
                             case _                           => OtherASTNode(indent/2,data)
                         }
                     case (None,None,data,indent,_) =>
